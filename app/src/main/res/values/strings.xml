@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Memoir</string>
+
+    <string name="journal">My Journal</string>
+    <string name="bucket_list">Bucket List</string>
+    <string name="to_do">To Do</string>
+
+    <string name="journal_date_label">9 - Wednesday</string>
+    <string name="journal_photo_label">Photo Journal</string>
+    <string name="journal_edtx_hint">
+        How\'s your day? Write something...
+    </string>
+
+    <string name="permission_title">Permission Denied</string>
+    <string name="permission_message">
+        Please allow all permissions required for this app.
+        \n\nStorage - Reading photos taken for showcase in PHOTO JOURNAL section.
+    </string>
+
+    <string name="sample_title">Lorem Ipsum</string>
+    <string name="sample_difficulty">Easy | Food</string>
+    <string name="sample_body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Aenean vitae eros eget nulla volutpat rutrum.
+        Maecenas laoreet velit elit, pretium dictum nisl ultricies quis.
+        Cras ac placerat ligula, sit amet blandit libero.
+        Aenean varius odio gravida consequat elementum. Nulla et condimentum sapien.
+        Nam egestas neque sed feugiat euismod.
+        Mauris euismod vehicula nisl, et mollis nulla interdum ut.
+        Mauris sapien ligula, laoreet ac elit sit amet, faucibus volutpat justo.
+        Donec luctus nibh in interdum efficitur.
+        Donec vitae nulla ut leo malesuada tempus.
+        Fusce non felis libero. Nullam ac mi lobortis, pretium ex vitae, tincidunt metus.
+        Curabitur semper dolor eros, eu volutpat nibh condimentum id.
+        Vivamus ut eros at mi elementum scelerisque.
+        Duis id est sit amet leo elementum laoreet eget eu erat.
+        Fusce mattis mollis interdum
+    </string>
+
+    <string name="filter">Filter</string>
+
+    <string name="done">Done</string>
+    <string name="pending">Pending</string>
+
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+
+    <string name="adventure">Adventure</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="personal">Personal</string>
+    <string name="travel">Travel</string>
+
+</resources>
