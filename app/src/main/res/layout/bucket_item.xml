@@ -18,34 +18,24 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/guide_line"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/sample"
+            android:src="@drawable/no_photo"
             android:scaleType="centerCrop"/>
-
-        <com.github.lzyzsd.circleprogress.DonutProgress
-            android:id="@+id/bucket_item_progress"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="10dp"
-            app:donut_progress="88"
-            app:donut_text="88%"
-            app:layout_constraintTop_toBottomOf="@+id/bucket_item_image"
-            app:layout_constraintRight_toRightOf="parent"/>
 
         <TextView
             android:id="@+id/bucket_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/sample_title"
+            android:hint="@string/title_hint"
             android:textAppearance="?android:attr/textAppearanceLarge"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guide_line" />
 
         <TextView
-            android:id="@+id/bucket_item_difficulty"
+            android:id="@+id/bucket_item_category_difficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sample_difficulty"
+            android:text="@string/sample_category_difficulty"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bucket_item_title" />
@@ -55,14 +45,14 @@
             android:layout_height="100dp"
             android:scrollbars="none"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bucket_item_progress">
+            app:layout_constraintTop_toBottomOf="@+id/bucket_item_category_difficulty">
 
             <TextView
                 android:id="@+id/bucket_item_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/sample_body" />
+                android:hint="@string/body_hint"/>
         </ScrollView>
 
         <android.support.constraint.Guideline

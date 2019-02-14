@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:padding="10dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/bucket_detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/add_image"
+                app:layout_constraintBottom_toTopOf="@+id/horizontal_line_40"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/bucket_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/title_hint"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bucket_detail_image" />
+
+            <TextView
+                android:id="@+id/bucket_detail_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/category_hint"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bucket_detail_title" />
+
+            <TextView
+                android:id="@+id/divider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="|"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:layout_constraintLeft_toRightOf="@id/bucket_detail_category"
+                app:layout_constraintTop_toBottomOf="@+id/bucket_detail_title" />
+
+            <TextView
+                android:id="@+id/bucket_detail_difficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/difficulty_hint"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:layout_constraintLeft_toRightOf="@+id/divider"
+                app:layout_constraintTop_toBottomOf="@+id/bucket_detail_title" />
+
+            <EditText
+                android:id="@+id/bucket_detail_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/body_hint"
+                android:inputType="textCapSentences|textMultiLine"
+                android:padding="10dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/tab_indicator_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bucket_detail_difficulty" />
+
+            <Button
+                android:id="@+id/bucket_detail_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_drawable_left"
+                android:text="@string/edit"
+                android:textAllCaps="false"
+                android:textColor="@drawable/button_text_color"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/vertical_line_50"
+                app:layout_constraintTop_toBottomOf="@+id/bucket_detail_body" />
+
+            <Button
+                android:id="@+id/bucket_detail_done"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_drawable_border_all"
+                android:text="@string/mark_done"
+                android:textAllCaps="false"
+                android:textColor="@drawable/button_text_color"
+                android:visibility="gone"
+                app:layout_constraintLeft_toRightOf="@+id/vertical_line_50"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bucket_detail_body" />
+
+            <Button
+                android:id="@+id/bucket_detail_save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_drawable_border_all"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@drawable/button_text_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bucket_detail_body" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/vertical_line_50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/horizontal_line_40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.40" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+</ScrollView>

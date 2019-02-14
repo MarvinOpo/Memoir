@@ -14,12 +14,24 @@
         app:layout_constraintBottom_toTopOf="@+id/guide_line"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include layout="@layout/filter_layout"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/bucket_fab"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/filter_view"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bucket_pager"
+        android:src="@drawable/add_icon"/>
+
+    <include
+        android:id="@+id/filter_view"
+        layout="@layout/filter_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/guide_line"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guide_line" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guide_line"

@@ -1,12 +1,15 @@
 package com.mvopo.memoir.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity(nameInDb = "bucket_list_tbl")
-public class BucketItem {
+public class BucketItem implements Parcelable{
 
     @Id(autoincrement = true)
     private Long id;
@@ -14,27 +17,52 @@ public class BucketItem {
     @NotNull
     private String image, title, body;
 
-    private String category, difficulty;
-    
-    @NotNull
-    private int progress;
+    private boolean isDone;
 
-    @Generated(hash = 2064859495)
+    private String category, difficulty;
+
+    @Generated(hash = 1007499652)
     public BucketItem(Long id, @NotNull String image, @NotNull String title,
-            @NotNull String body, String category, String difficulty,
-            int progress) {
+            @NotNull String body, boolean isDone, String category,
+            String difficulty) {
         this.id = id;
         this.image = image;
         this.title = title;
         this.body = body;
+        this.isDone = isDone;
         this.category = category;
         this.difficulty = difficulty;
-        this.progress = progress;
     }
 
     @Generated(hash = 98808921)
     public BucketItem() {
     }
+
+    protected BucketItem(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        image = in.readString();
+        title = in.readString();
+        body = in.readString();
+        isDone = in.readByte() != 0;
+        category = in.readString();
+        difficulty = in.readString();
+    }
+
+    public static final Creator<BucketItem> CREATOR = new Creator<BucketItem>() {
+        @Override
+        public BucketItem createFromParcel(Parcel in) {
+            return new BucketItem(in);
+        }
+
+        @Override
+        public BucketItem[] newArray(int size) {
+            return new BucketItem[size];
+        }
+    };
 
     public Long getId() {
         return this.id;
@@ -68,12 +96,12 @@ public class BucketItem {
         this.body = body;
     }
 
-    public int getProgress() {
-        return this.progress;
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
-    public void setProgress(int progress) {
-        this.progress = progress;
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public String getCategory() {
@@ -90,5 +118,26 @@ public class BucketItem {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(id);
+        }
+        parcel.writeString(image);
+        parcel.writeString(title);
+        parcel.writeString(body);
+        parcel.writeByte((byte) (isDone ? 1 : 0));
+        parcel.writeString(category);
+        parcel.writeString(difficulty);
     }
 }

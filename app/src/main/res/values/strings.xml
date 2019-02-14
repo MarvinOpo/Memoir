@@ -18,7 +18,7 @@
     </string>
 
     <string name="sample_title">Lorem Ipsum</string>
-    <string name="sample_difficulty">Easy | Food</string>
+    <string name="sample_category_difficulty">Adventure | Easy</string>
     <string name="sample_body">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Aenean vitae eros eget nulla volutpat rutrum.
@@ -37,6 +37,11 @@
         Fusce mattis mollis interdum
     </string>
 
+    <string name="title_hint">Add Title</string>
+    <string name="category_hint">Category</string>
+    <string name="difficulty_hint">Difficulty</string>
+    <string name="body_hint">Write details here...</string>
+
     <string name="filter">Filter</string>
 
     <string name="done">Done</string>
@@ -50,5 +55,22 @@
     <string name="entertainment">Entertainment</string>
     <string name="personal">Personal</string>
     <string name="travel">Travel</string>
+
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="mark_done">Mark as Done</string>
+
+    <string-array name="category">
+        <item>@string/adventure</item>
+        <item>@string/entertainment</item>
+        <item>@string/personal</item>
+        <item>@string/travel</item>
+    </string-array>
+
+    <string-array name="difficulty">
+        <item>@string/easy</item>
+        <item>@string/medium</item>
+        <item>@string/hard</item>
+    </string-array>
 
 </resources>

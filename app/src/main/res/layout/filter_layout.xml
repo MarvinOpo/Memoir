@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/filter"
@@ -25,6 +25,7 @@
         android:minHeight="0dp"
         android:padding="5dp"
         android:text="@string/pending"
+        android:textAllCaps="false"
         android:textColor="@drawable/button_text_color"
         app:layout_constraintRight_toLeftOf="@+id/vertical_center_50"
         app:layout_constraintTop_toBottomOf="@+id/filter" />
@@ -38,6 +39,7 @@
         android:minHeight="0dp"
         android:padding="5dp"
         android:text="@string/done"
+        android:textAllCaps="false"
         android:textColor="@drawable/button_text_color"
         app:layout_constraintLeft_toRightOf="@+id/filter_pending"
         app:layout_constraintTop_toBottomOf="@+id/filter" />
@@ -52,6 +54,7 @@
         android:minHeight="0dp"
         android:padding="5dp"
         android:text="@string/easy"
+        android:textAllCaps="false"
         android:textColor="@drawable/button_text_color"
         app:layout_constraintRight_toLeftOf="@id/filter_medium"
         app:layout_constraintTop_toBottomOf="@+id/filter_pending" />
@@ -66,6 +69,7 @@
         android:minHeight="0dp"
         android:padding="5dp"
         android:text="@string/medium"
+        android:textAllCaps="false"
         android:textColor="@drawable/button_text_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -81,6 +85,7 @@
         android:minHeight="0dp"
         android:padding="5dp"
         android:text="@string/hard"
+        android:textAllCaps="false"
         android:textColor="@drawable/button_text_color"
         app:layout_constraintLeft_toRightOf="@+id/filter_medium"
         app:layout_constraintTop_toBottomOf="@+id/filter_pending" />
@@ -90,8 +95,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
+        app:allow_random_color="true"
         app:big_shine_color="@color/colorPrimary"
         app:btn_color="@android:color/darker_gray"
         app:btn_fill_color="@color/colorPrimary"
@@ -100,7 +106,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/vertical_line_25"
         app:layout_constraintTop_toBottomOf="@+id/filter_medium"
-        android:layout_marginTop="10dp"
         app:shine_animation_duration="1500"
         app:shine_count="8"
         app:shine_turn_angle="10"
@@ -111,28 +116,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/adventure"
-        android:textSize="10dp"
         android:textColor="@color/colorPrimary"
+        android:textSize="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/filter_adventure"
         app:layout_constraintRight_toRightOf="@id/filter_adventure"
-        app:layout_constraintTop_toBottomOf="@id/filter_adventure"/>
+        app:layout_constraintTop_toBottomOf="@id/filter_adventure" />
 
     <com.sackcentury.shinebuttonlib.ShineButton
         android:id="@+id/filter_entertainment"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
+        app:allow_random_color="true"
         app:big_shine_color="@color/colorPrimary"
         app:btn_color="@android:color/darker_gray"
         app:btn_fill_color="@color/colorPrimary"
         app:click_animation_duration="200"
         app:enable_flashing="false"
-        app:layout_constraintRight_toLeftOf="@+id/vertical_center_50"
         app:layout_constraintLeft_toRightOf="@id/vertical_line_25"
+        app:layout_constraintRight_toLeftOf="@+id/vertical_center_50"
         app:layout_constraintTop_toBottomOf="@+id/filter_medium"
-        android:layout_marginTop="10dp"
         app:shine_animation_duration="1500"
         app:shine_count="8"
         app:shine_turn_angle="10"
@@ -143,19 +148,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/entertainment"
-        android:textSize="10dp"
         android:textColor="@color/colorPrimary"
+        android:textSize="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/filter_entertainment"
         app:layout_constraintRight_toRightOf="@id/filter_entertainment"
-        app:layout_constraintTop_toBottomOf="@id/filter_entertainment"/>
+        app:layout_constraintTop_toBottomOf="@id/filter_entertainment" />
 
     <com.sackcentury.shinebuttonlib.ShineButton
         android:id="@+id/filter_personal"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
+        app:allow_random_color="true"
         app:big_shine_color="@color/colorPrimary"
         app:btn_color="@android:color/darker_gray"
         app:btn_fill_color="@color/colorPrimary"
@@ -164,7 +170,6 @@
         app:layout_constraintLeft_toRightOf="@+id/vertical_center_50"
         app:layout_constraintRight_toLeftOf="@+id/vertical_center_75"
         app:layout_constraintTop_toBottomOf="@+id/filter_medium"
-        android:layout_marginTop="10dp"
         app:shine_animation_duration="1500"
         app:shine_count="8"
         app:shine_turn_angle="10"
@@ -175,28 +180,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/personal"
-        android:textSize="10dp"
         android:textColor="@color/colorPrimary"
+        android:textSize="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/filter_personal"
         app:layout_constraintRight_toRightOf="@id/filter_personal"
-        app:layout_constraintTop_toBottomOf="@id/filter_personal"/>
+        app:layout_constraintTop_toBottomOf="@id/filter_personal" />
 
     <com.sackcentury.shinebuttonlib.ShineButton
         android:id="@+id/filter_travel"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
+        app:allow_random_color="true"
         app:big_shine_color="@color/colorPrimary"
         app:btn_color="@android:color/darker_gray"
         app:btn_fill_color="@color/colorPrimary"
         app:click_animation_duration="200"
         app:enable_flashing="false"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/vertical_center_75"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_medium"
-        android:layout_marginTop="10dp"
         app:shine_animation_duration="1500"
         app:shine_count="8"
         app:shine_turn_angle="10"
@@ -207,11 +212,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/travel"
-        android:textSize="10dp"
         android:textColor="@color/colorPrimary"
+        android:textSize="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/filter_travel"
         app:layout_constraintRight_toRightOf="@id/filter_travel"
-        app:layout_constraintTop_toBottomOf="@id/filter_travel"/>
+        app:layout_constraintTop_toBottomOf="@id/filter_travel" />
 
     <android.support.constraint.Guideline
         android:id="@+id/vertical_line_25"

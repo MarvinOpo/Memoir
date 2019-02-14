@@ -117,4 +117,22 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         presenter.onPermissionResult(requestCode, grantResults);
     }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to exit app?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    MainActivity.super.onBackPressed();
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
+            builder.show();
+        } else {
+            getSupportFragmentManager().popBackStackImmediate();
+        }
+    }
 }

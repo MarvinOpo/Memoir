@@ -107,7 +107,6 @@ public class JournalFragment extends Fragment implements JournalContract.journal
             }
         });
 
-
         heartBtn = view.findViewById(R.id.heart_btn);
         heartBtn.setOnClickListener(presenter.getShineListener());
 
