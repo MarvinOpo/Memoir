@@ -52,6 +52,7 @@ public class BucketAdapter extends PagerAdapter {
         TextView bodyTv = view.findViewById(R.id.bucket_item_body);
 
         ImageView bucketImageIv = view.findViewById(R.id.bucket_item_image);
+        ImageView doneIv = view.findViewById(R.id.bucket_item_done);
 
         BucketItem item = bucketItems.get(position);
         titleTv.setText(item.getTitle());
@@ -61,6 +62,7 @@ public class BucketAdapter extends PagerAdapter {
 
         if(category.isEmpty()) category = "Category";
         if(difficulty.isEmpty()) difficulty = "Difficulty";
+        if(item.getIsDone()) doneIv.setVisibility(View.VISIBLE);
 
         String categDiff = category + " | " + difficulty;
 

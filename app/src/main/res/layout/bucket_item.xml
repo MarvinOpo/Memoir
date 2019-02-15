@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
-    app:cardCornerRadius="10dp">
+    app:cardUseCompatPadding="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
             android:id="@+id/bucket_item_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guide_line"
-            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
             android:src="@drawable/no_photo"
-            android:scaleType="centerCrop"/>
+            app:layout_constraintBottom_toTopOf="@+id/guide_line"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/bucket_item_title"
@@ -40,6 +40,17 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bucket_item_title" />
 
+        <ImageView
+            android:id="@+id/bucket_item_done"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/done_icon"
+            app:layout_constraintBottom_toTopOf="@id/bucket_item_title"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/bucket_item_image" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -51,8 +62,8 @@
                 android:id="@+id/bucket_item_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:hint="@string/body_hint"/>
+                android:hint="@string/body_hint"
+                android:padding="10dp" />
         </ScrollView>
 
         <android.support.constraint.Guideline

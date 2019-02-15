@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -47,6 +48,51 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
     }
 
     @Override
+    public View.OnClickListener getClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.bucket_detail_image:
+                        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                        intent.setType("image/*");
+                        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        detailView.startIntent(intent);
+                        break;
+                    case R.id.bucket_detail_category:
+                        detailView.showOptionDialog(R.array.category, (TextView) view);
+                        break;
+                    case R.id.bucket_detail_difficulty:
+                        detailView.showOptionDialog(R.array.difficulty, (TextView) view);
+                        break;
+                    case R.id.bucket_detail_done:
+                        view.setSelected(!view.isSelected());
+                        saveBucket();
+                        break;
+                    case R.id.bucket_detail_save:
+                        saveBucket();
+
+                        try{
+                            detailView.hideKeyboard();
+                        }catch (Exception e){
+                            Log.e("DETAIL_PRESENTER", e.getMessage());
+                        }
+
+                        detailView.popFragment();
+                        break;
+                    case R.id.bucket_detail_edit:
+                        if(!detailView.isBucketDone()) detailView.showSaveBtn();
+                        else detailView.toastMessage("Can't edit finished bucket");
+
+                        break;
+                }
+            }
+        };
+
+        return listener;
+    }
+
+    @Override
     public void checkBucketItem(BucketItem bucketItem) {
         if(bucketItem != null){
             detailView.displayBucket();
@@ -67,8 +113,6 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
             bucketItem = detailView.getNewBucket();
             bucketDao.insert(bucketItem);
         }
-
-        detailView.popFragment();
     }
 
     @Override

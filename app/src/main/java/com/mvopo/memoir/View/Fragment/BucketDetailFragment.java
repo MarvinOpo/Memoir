@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mvopo.memoir.Helper.GlideApp;
 import com.mvopo.memoir.Interface.BucketDetailContract;
@@ -30,8 +31,6 @@ import com.mvopo.memoir.Model.Constants;
 import com.mvopo.memoir.Model.DBApplication;
 import com.mvopo.memoir.Presenter.BucketDetailPresenter;
 import com.mvopo.memoir.R;
-
-import java.io.File;
 
 public class BucketDetailFragment extends Fragment implements BucketDetailContract.detailView {
 
@@ -47,16 +46,7 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     private BucketItem bucketItem;
     private String imgPath;
 
-    private View.OnClickListener imageClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivityForResult(intent, Constants.IMAGE_PICK_CODE);
-        }
-    };
-
+    private View.OnClickListener clickListener;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,36 +66,23 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
         editBtn = view.findViewById(R.id.bucket_detail_edit);
         doneBtn = view.findViewById(R.id.bucket_detail_done);
 
-        bucketImageIv.setOnClickListener(imageClickListener);
-        categoryTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showOptionDialog(R.array.category, categoryTv);
-            }
-        });
-        difficultyTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showOptionDialog(R.array.difficulty, difficultyTv);
-            }
-        });
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.saveBucket();
-            }
-        });
-        editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showSaveBtn();
-            }
-        });
+        clickListener = presenter.getClickListener();
+
+        bucketImageIv.setOnClickListener(clickListener);
+        categoryTv.setOnClickListener(clickListener);
+        difficultyTv.setOnClickListener(clickListener);
+        doneBtn.setOnClickListener(clickListener);
+        saveBtn.setOnClickListener(clickListener);
+        editBtn.setOnClickListener(clickListener);
 
         presenter.checkBucketItem(bucketItem);
 
-        titleEdtx.setOnFocusChangeListener(presenter.getFocusListener());
-        bodyEdtx.setOnFocusChangeListener(presenter.getFocusListener());
+        View.OnFocusChangeListener focusListener = presenter.getFocusListener();
+        titleEdtx.setOnFocusChangeListener(focusListener);
+        bodyEdtx.setOnFocusChangeListener(focusListener);
+
+        doneBtn.setSelected(bucketItem.getIsDone());
+
         return view;
     }
 
@@ -148,6 +125,11 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     }
 
     @Override
+    public boolean isBucketDone() {
+        return bucketItem.getIsDone();
+    }
+
+    @Override
     public void displayBucket() {
 
         loadImage(bucketItem.getImage());
@@ -179,6 +161,18 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     }
 
     @Override
+    public void showKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(titleEdtx, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    @Override
+    public void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+    }
+
+    @Override
     public void disableFields() {
         bucketImageIv.setOnClickListener(null);
         titleEdtx.setEnabled(false);
@@ -189,23 +183,18 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
 
     @Override
     public void enableFields() {
-        bucketImageIv.setOnClickListener(imageClickListener);
+        bucketImageIv.setOnClickListener(clickListener);
         titleEdtx.setEnabled(true);
         bodyEdtx.setEnabled(true);
         categoryTv.setEnabled(true);
         difficultyTv.setEnabled(true);
 
         titleEdtx.requestFocus();
-
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(titleEdtx, InputMethodManager.SHOW_IMPLICIT);
+        showKeyboard();
     }
 
     @Override
     public void popFragment() {
-        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-
         getActivity().getSupportFragmentManager().popBackStack();
 
     }
@@ -229,6 +218,11 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
         lineView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
 
         optionGroup.addView(lineView);
+    }
+
+    @Override
+    public void toastMessage(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -268,5 +262,10 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
                 optionDialog.dismiss();
             }
         });
+    }
+
+    @Override
+    public void startIntent(Intent intent) {
+        startActivityForResult(intent, Constants.IMAGE_PICK_CODE);
     }
 }

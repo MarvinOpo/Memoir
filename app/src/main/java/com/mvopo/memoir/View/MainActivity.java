@@ -1,6 +1,10 @@
 package com.mvopo.memoir.View;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +21,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
+import com.mvopo.memoir.Helper.AlarmReceiver;
+import com.mvopo.memoir.Helper.BootReceiver;
 import com.mvopo.memoir.Interface.MainContract;
 import com.mvopo.memoir.Model.Constants;
 import com.mvopo.memoir.Presenter.MainPresenter;
@@ -52,6 +58,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
         bottom_nav.setOnNavigationItemSelectedListener(presenter.getBottomNavListener());
 
         presenter.checkPermission();
+
+        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        presenter.setNotifier(manager, pendingIntent);
     }
 
     @Override
@@ -111,6 +123,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
         fragmentTransaction.replace(R.id.fragment_container, fragment).commit();
+    }
+
+    @Override
+    public void setComponentSetting() {
+        ComponentName bootReceiver = new ComponentName(this, BootReceiver.class);
+        PackageManager packageManager = getPackageManager();
+        packageManager.setComponentEnabledSetting(bootReceiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
     }
 
     @Override

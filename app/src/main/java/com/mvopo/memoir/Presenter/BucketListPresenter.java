@@ -1,8 +1,6 @@
 package com.mvopo.memoir.Presenter;
 
 import android.view.View;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
 import com.mvopo.memoir.Interface.BucketListContract;
 import com.mvopo.memoir.Model.BucketItem;

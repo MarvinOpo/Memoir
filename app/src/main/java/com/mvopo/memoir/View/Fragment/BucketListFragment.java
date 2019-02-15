@@ -1,6 +1,5 @@
 package com.mvopo.memoir.View.Fragment;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.mvopo.memoir.Helper.BucketAdapter;
 import com.mvopo.memoir.Interface.BucketListContract;
@@ -25,7 +19,6 @@ import com.mvopo.memoir.Model.BucketItemDao;
 import com.mvopo.memoir.Model.DBApplication;
 import com.mvopo.memoir.Presenter.BucketListPresenter;
 import com.mvopo.memoir.R;
-import com.mvopo.memoir.View.MainActivity;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.List;

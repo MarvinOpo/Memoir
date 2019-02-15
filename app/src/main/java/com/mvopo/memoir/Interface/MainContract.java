@@ -1,5 +1,7 @@
 package com.mvopo.memoir.Interface;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 
@@ -20,13 +22,14 @@ public class MainContract {
         void showPermissionDialog();
 
         void showFragment(Fragment fragment);
-
+        void setComponentSetting();
     }
     public interface mainAction {
+        BottomNavigationView.OnNavigationItemSelectedListener getBottomNavListener();
 
         void checkPermission();
         void onPermissionResult(int requestCode, int[] grantResults);
 
-        BottomNavigationView.OnNavigationItemSelectedListener getBottomNavListener();
+        void setNotifier(AlarmManager manager, PendingIntent intent);
     }
 }

@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/rounded_drawable_border_right"
+                android:background="@drawable/button_drawable_right"
                 android:text="@string/mark_done"
                 android:textAllCaps="false"
                 android:textColor="@drawable/button_text_color"

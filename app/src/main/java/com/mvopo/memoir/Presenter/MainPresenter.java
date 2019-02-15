@@ -1,6 +1,9 @@
 package com.mvopo.memoir.Presenter;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
@@ -8,6 +11,8 @@ import android.view.MenuItem;
 import com.mvopo.memoir.Interface.MainContract;
 import com.mvopo.memoir.Model.Constants;
 import com.mvopo.memoir.R;
+
+import java.util.Calendar;
 
 public class MainPresenter implements MainContract.mainAction {
 
@@ -38,6 +43,25 @@ public class MainPresenter implements MainContract.mainAction {
                     mainView.showPermissionDialog();
                 }
         }
+    }
+
+    @Override
+    public void setNotifier(AlarmManager manager, PendingIntent intent) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 5);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        if (manager != null) {
+            manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intent);
+            }
+        }
+
+        mainView.setComponentSetting();
     }
 
     @Override
