@@ -69,64 +69,74 @@ public class JournalFragment extends Fragment implements JournalContract.journal
         presenter = new JournalPresenter(this);
 
         progressBar = view.findViewById(R.id.journal_loader);
-
         calendarView = view.findViewById(R.id.journal_calendar);
-        calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                presenter.onDateSelected(date);
-            }
-        });
-
         dayLabelTv = view.findViewById(R.id.journal_day_label);
         photoContainerGv = view.findViewById(R.id.journal_photo_container);
-        photoContainerGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                presenter.onImageClick(i);
-            }
-        });
-
         journalEdtx = view.findViewById(R.id.journal_edtx);
-        journalEdtx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                presenter.onJournalFocusChange(b);
-            }
-        });
-
         saveBtn = view.findViewById(R.id.journal_save_btn);
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Journal journal = new Journal();
-                journal.setJournalTxt(journalEdtx.getText().toString() + "\n");
-                journal.setJournalDate(calendarView.getSelectedDate().getDate().toString());
+        heartBtn = view.findViewById(R.id.heart_btn);
+        happyBtn = view.findViewById(R.id.happy_btn);
+        sadBtn = view.findViewById(R.id.sad_btn);
+        angryBtn = view.findViewById(R.id.angry_btn);
 
-                presenter.saveJournal(journal);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+                    @Override
+                    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                        presenter.onDateSelected(date);
+                    }
+                });
+
+
+                photoContainerGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        presenter.onImageClick(i);
+                    }
+                });
+
+
+                journalEdtx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View view, boolean b) {
+                        presenter.onJournalFocusChange(b);
+                    }
+                });
+
+
+                saveBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Journal journal = new Journal();
+                        journal.setJournalTxt(journalEdtx.getText().toString() + "\n");
+                        journal.setJournalDate(calendarView.getSelectedDate().getDate().toString());
+
+                        presenter.saveJournal(journal);
+                    }
+                });
+
+                heartBtn.setOnClickListener(presenter.getShineListener());
+
+
+                happyBtn.setOnClickListener(presenter.getShineListener());
+
+                sadBtn.setOnClickListener(presenter.getShineListener());
+
+                angryBtn.setOnClickListener(presenter.getShineListener());
+
+                calendarView.setSelectedDate(CalendarDay.today());
+                presenter.onDateSelected(CalendarDay.today());
+
+                presenter.getMarkedList("heart");
+                presenter.getMarkedList("happy");
+                presenter.getMarkedList("sad");
+                presenter.getMarkedList("angry");
             }
         });
+        thread.start();
 
-        heartBtn = view.findViewById(R.id.heart_btn);
-        heartBtn.setOnClickListener(presenter.getShineListener());
-
-        happyBtn = view.findViewById(R.id.happy_btn);
-        happyBtn.setOnClickListener(presenter.getShineListener());
-
-        sadBtn = view.findViewById(R.id.sad_btn);
-        sadBtn.setOnClickListener(presenter.getShineListener());
-
-        angryBtn = view.findViewById(R.id.angry_btn);
-        angryBtn.setOnClickListener(presenter.getShineListener());
-
-
-        calendarView.setSelectedDate(CalendarDay.today());
-        presenter.onDateSelected(CalendarDay.today());
-
-        presenter.getMarkedList("heart");
-        presenter.getMarkedList("happy");
-        presenter.getMarkedList("sad");
-        presenter.getMarkedList("angry");
         return view;
     }
 
@@ -154,7 +164,7 @@ public class JournalFragment extends Fragment implements JournalContract.journal
 
     @Override
     public void loadPhotos(final ArrayList<String> photos) {
-        ((Activity) getContext()).runOnUiThread(new Runnable() {
+        getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 photoContainerGv.setAdapter(new ImageAdapter(getContext(), photos));
@@ -285,7 +295,12 @@ public class JournalFragment extends Fragment implements JournalContract.journal
     }
 
     @Override
-    public void addDecorator(int drawable, ArrayList<String> markedDays) {
-        calendarView.addDecorator(new EventDecorator(getContext().getResources().getDrawable(drawable), markedDays));
+    public void addDecorator(final int drawable, final ArrayList<String> markedDays) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                calendarView.addDecorator(new EventDecorator(getContext().getResources().getDrawable(drawable), markedDays));
+            }
+        });
     }
 }

@@ -196,6 +196,9 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
         difficultyTv.setEnabled(true);
 
         titleEdtx.requestFocus();
+
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(titleEdtx, InputMethodManager.SHOW_IMPLICIT);
     }
 
     @Override

@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
     @Override
     public void showFragment(Fragment fragment) {
         fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
         fragmentTransaction.replace(R.id.fragment_container, fragment).commit();
     }
 

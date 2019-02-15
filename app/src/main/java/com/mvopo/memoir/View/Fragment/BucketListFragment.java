@@ -25,6 +25,7 @@ import com.mvopo.memoir.Model.BucketItemDao;
 import com.mvopo.memoir.Model.DBApplication;
 import com.mvopo.memoir.Presenter.BucketListPresenter;
 import com.mvopo.memoir.R;
+import com.mvopo.memoir.View.MainActivity;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.List;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <com.sackcentury.shinebuttonlib.ShineButton
+        android:id="@+id/splash_text"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:src="@color/colorPrimaryDark"
+        app:allow_random_color="true"
+        app:big_shine_color="@color/white"
+        app:btn_color="@color/colorPrimaryDark"
+        app:btn_fill_color="@color/white"
+        app:click_animation_duration="200"
+        app:enable_flashing="true"
+        app:layout_constraintBottom_toTopOf="@+id/guide_line"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:shine_animation_duration="2000"
+        app:shine_count="10"
+        app:shine_turn_angle="100"
+        app:siShape="@raw/memoir"
+        android:layout_margin="10dp"
+        app:small_shine_offset_angle="20"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+</android.support.constraint.ConstraintLayout>

@@ -77,23 +77,21 @@ public class BucketAdapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
+                showItemDetail(position);
+            }
+        });
 
-                if(bucketItems.get(position).getId() == null) {
-                    bundle.putParcelable("bucketItem", null);
-                }else{
-                    bundle.putParcelable("bucketItem", bucketItems.get(position));
-                }
+        bodyTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showItemDetail(position);
+            }
+        });
 
-                BucketDetailFragment bdf = new BucketDetailFragment();
-                bdf.setArguments(bundle);
-
-                FragmentTransaction transaction = ((MainActivity) context).getSupportFragmentManager()
-                        .beginTransaction();
-                transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                        .replace(R.id.fragment_container, bdf)
-                        .addToBackStack(null)
-                        .commit();
+        bucketImageIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showItemDetail(position);
             }
         });
 
@@ -104,5 +102,25 @@ public class BucketAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup collection, int position, Object view) {
         collection.removeView((View) view);
+    }
+
+    public void showItemDetail(int position){
+        Bundle bundle = new Bundle();
+
+        if(bucketItems.get(position).getId() == null) {
+            bundle.putParcelable("bucketItem", null);
+        }else{
+            bundle.putParcelable("bucketItem", bucketItems.get(position));
+        }
+
+        BucketDetailFragment bdf = new BucketDetailFragment();
+        bdf.setArguments(bundle);
+
+        FragmentTransaction transaction = ((MainActivity) context).getSupportFragmentManager()
+                .beginTransaction();
+        transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                .replace(R.id.fragment_container, bdf)
+                .addToBackStack(null)
+                .commit();
     }
 }
