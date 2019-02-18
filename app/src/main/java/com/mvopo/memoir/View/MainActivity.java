@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int themeStyle = getIntent().getExtras().getInt("theme");
+        setTheme(themeStyle);
+
         setContentView(R.layout.activity_main);
 
         journalFragment = new JournalFragment();

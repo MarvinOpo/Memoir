@@ -79,56 +79,56 @@ public class JournalFragment extends Fragment implements JournalContract.journal
         sadBtn = view.findViewById(R.id.sad_btn);
         angryBtn = view.findViewById(R.id.angry_btn);
 
+        calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                presenter.onDateSelected(date);
+            }
+        });
+
+
+        photoContainerGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                presenter.onImageClick(i);
+            }
+        });
+
+
+        journalEdtx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                presenter.onJournalFocusChange(b);
+            }
+        });
+
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Journal journal = new Journal();
+                journal.setJournalTxt(journalEdtx.getText().toString() + "\n");
+                journal.setJournalDate(calendarView.getSelectedDate().getDate().toString());
+
+                presenter.saveJournal(journal);
+            }
+        });
+
+        heartBtn.setOnClickListener(presenter.getShineListener());
+
+
+        happyBtn.setOnClickListener(presenter.getShineListener());
+
+        sadBtn.setOnClickListener(presenter.getShineListener());
+
+        angryBtn.setOnClickListener(presenter.getShineListener());
+
+        calendarView.setSelectedDate(CalendarDay.today());
+        presenter.onDateSelected(CalendarDay.today());
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
-                    @Override
-                    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                        presenter.onDateSelected(date);
-                    }
-                });
-
-
-                photoContainerGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        presenter.onImageClick(i);
-                    }
-                });
-
-
-                journalEdtx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View view, boolean b) {
-                        presenter.onJournalFocusChange(b);
-                    }
-                });
-
-
-                saveBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Journal journal = new Journal();
-                        journal.setJournalTxt(journalEdtx.getText().toString() + "\n");
-                        journal.setJournalDate(calendarView.getSelectedDate().getDate().toString());
-
-                        presenter.saveJournal(journal);
-                    }
-                });
-
-                heartBtn.setOnClickListener(presenter.getShineListener());
-
-
-                happyBtn.setOnClickListener(presenter.getShineListener());
-
-                sadBtn.setOnClickListener(presenter.getShineListener());
-
-                angryBtn.setOnClickListener(presenter.getShineListener());
-
-                calendarView.setSelectedDate(CalendarDay.today());
-                presenter.onDateSelected(CalendarDay.today());
-
                 presenter.getMarkedList("heart");
                 presenter.getMarkedList("happy");
                 presenter.getMarkedList("sad");

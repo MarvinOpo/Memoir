@@ -3,7 +3,7 @@
 
     <string name="journal">My Journal</string>
     <string name="bucket_list">Bucket List</string>
-    <string name="to_do">To Do</string>
+    <string name="profile">My Profile</string>
 
     <string name="journal_date_label">9 - Wednesday</string>
     <string name="journal_photo_label">Photo Journal</string>
@@ -59,6 +59,10 @@
     <string name="edit">Edit</string>
     <string name="save">Save</string>
     <string name="mark_done">Mark as Done</string>
+
+    <string name="name_hint">Display Name Here</string>
+    <string name="allow_notify">Allow app notification</string>
+    <string name="theme_label">Select theme color</string>
 
     <string-array name="category">
         <item>@string/adventure</item>

@@ -14,6 +14,8 @@ public class BucketDetailContract {
         BucketItem getUpdatedBucket();
         BucketItem getNewBucket();
         BucketItemDao getBucketDaoInstance();
+        String getTitle();
+        String getBody();
         boolean isBucketDone();
 
         void displayBucket();
@@ -37,6 +39,8 @@ public class BucketDetailContract {
 
         void showOptionDialog(int resource, TextView targetView);
         void startIntent(Intent intent);
+
+        void setAccentColor();
     }
 
     public interface detailAction{
@@ -45,6 +49,7 @@ public class BucketDetailContract {
 
         void checkBucketItem(BucketItem bucketItem);
 
+        void validateBucket();
         void saveBucket();
         void onActivityResult(int requestCode, int resultCode, Intent data);
 

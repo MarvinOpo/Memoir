@@ -67,10 +67,10 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
                         break;
                     case R.id.bucket_detail_done:
                         view.setSelected(!view.isSelected());
-                        saveBucket();
+                        validateBucket();
                         break;
                     case R.id.bucket_detail_save:
-                        saveBucket();
+                        validateBucket();
 
                         try{
                             detailView.hideKeyboard();
@@ -103,6 +103,24 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
     }
 
     @Override
+    public void validateBucket() {
+        String title = detailView.getTitle();
+        String body = detailView.getBody();
+
+        if(title == null || title.isEmpty()){
+            detailView.toastMessage("Please provide bucket title.");
+            return;
+        }
+
+        if(body == null || body.isEmpty()){
+            detailView.toastMessage("Please provide bucket description.");
+            return;
+        }
+
+        saveBucket();
+    }
+
+    @Override
     public void saveBucket() {
         BucketItemDao bucketDao = detailView.getBucketDaoInstance();
         BucketItem bucketItem;
@@ -129,6 +147,8 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
 
     @Override
     public void populateRadioGroup(String[] options) {
+        detailView.setAccentColor();
+
         for(int i = 0; i < options.length; i++){
             detailView.addRadioButton(options[i]);
             detailView.addDivider();

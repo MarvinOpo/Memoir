@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.mvopo.memoir.Interface.MainContract;
 import com.mvopo.memoir.Model.Constants;
 import com.mvopo.memoir.R;
+import com.mvopo.memoir.View.Fragment.ProfileFragment;
 
 import java.util.Calendar;
 
@@ -49,7 +50,7 @@ public class MainPresenter implements MainContract.mainAction {
     public void setNotifier(AlarmManager manager, PendingIntent intent) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 5);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
 
@@ -77,7 +78,8 @@ public class MainPresenter implements MainContract.mainAction {
                             case R.id.bottom_nav_bucket:
                                 mainView.showFragment(mainView.getBucketListFragment());
                                 break;
-                            case R.id.bottom_nav_todo:
+                            case R.id.bottom_nav_profile:
+                                mainView.showFragment(new ProfileFragment());
                                 break;
                         }
 

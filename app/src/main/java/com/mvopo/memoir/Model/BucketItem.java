@@ -15,21 +15,20 @@ public class BucketItem implements Parcelable{
     private Long id;
 
     @NotNull
-    private String image, title, body;
+    private String title, body;
 
     private boolean isDone;
 
-    private String category, difficulty;
+    private String image, category, difficulty;
 
-    @Generated(hash = 1007499652)
-    public BucketItem(Long id, @NotNull String image, @NotNull String title,
-            @NotNull String body, boolean isDone, String category,
-            String difficulty) {
+    @Generated(hash = 1788423518)
+    public BucketItem(Long id, @NotNull String title, @NotNull String body,
+            boolean isDone, String image, String category, String difficulty) {
         this.id = id;
-        this.image = image;
         this.title = title;
         this.body = body;
         this.isDone = isDone;
+        this.image = image;
         this.category = category;
         this.difficulty = difficulty;
     }
@@ -44,10 +43,10 @@ public class BucketItem implements Parcelable{
         } else {
             id = in.readLong();
         }
-        image = in.readString();
         title = in.readString();
         body = in.readString();
         isDone = in.readByte() != 0;
+        image = in.readString();
         category = in.readString();
         difficulty = in.readString();
     }
@@ -72,14 +71,6 @@ public class BucketItem implements Parcelable{
         this.id = id;
     }
 
-    public String getImage() {
-        return this.image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getTitle() {
         return this.title;
     }
@@ -102,6 +93,14 @@ public class BucketItem implements Parcelable{
 
     public void setIsDone(boolean isDone) {
         this.isDone = isDone;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCategory() {
@@ -133,10 +132,10 @@ public class BucketItem implements Parcelable{
             parcel.writeByte((byte) 1);
             parcel.writeLong(id);
         }
-        parcel.writeString(image);
         parcel.writeString(title);
         parcel.writeString(body);
         parcel.writeByte((byte) (isDone ? 1 : 0));
+        parcel.writeString(image);
         parcel.writeString(category);
         parcel.writeString(difficulty);
     }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/color_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal_guide_40"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/profile_default"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/setting_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/name_hint"
+            android:padding="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:textColorHint="?colorAccent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/notification_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/allow_notify"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_guide_40" />
+
+    <Switch
+        android:id="@+id/notification_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:checked="true"
+        app:layout_constraintBottom_toBottomOf="@id/notification_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/notification_label" />
+
+    <TextView
+        android:id="@+id/theme_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/theme_label"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notification_label" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/theme_pink"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:src="@color/pink"
+        app:civ_border_color="@color/pinkDark"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/horizontal_guide_55"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guide_55" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/theme_cyan"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:src="@color/cyan"
+        app:civ_border_color="@color/cyanDark"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/horizontal_guide_55"
+        app:layout_constraintLeft_toRightOf="@+id/theme_pink"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guide_55" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/theme_violet"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:src="@color/violet"
+        app:civ_border_color="@color/violetDark"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/horizontal_guide_55"
+        app:layout_constraintLeft_toRightOf="@+id/theme_cyan"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guide_55" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/theme_red"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:src="@color/red"
+        app:civ_border_color="@color/redDark"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/horizontal_guide_55"
+        app:layout_constraintLeft_toRightOf="@+id/theme_violet"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guide_55" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/horizontal_guide_40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <View
+        android:id="@+id/horizontal_guide_55"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/theme_label" />
+
+    <Button
+        android:id="@+id/setting_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/button_drawable"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@drawable/button_text_color"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_guide_55" />
+</android.support.constraint.ConstraintLayout>

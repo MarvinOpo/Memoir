@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#56c8d8</color>
+
+    <color name="pink">#f06292</color>
+    <color name="pinkDark">#ba2d65</color>
+    <color name="pinkAccent">#ff94c2</color>
+
+    <color name="cyan">#008577</color>
+    <color name="cyanDark">#00574B</color>
+    <color name="cyanAccent">#56c8d8</color>
+
+    <color name="violet">#ba68c8</color>
+    <color name="violetDark">#883997</color>
+    <color name="violetAccent">#ee98fb</color>
+
+    <color name="red">#e57373</color>
+    <color name="redDark">#af4448</color>
+    <color name="redAccent">#ffa4a2</color>
 
     <color name="white">#FFF</color>
     <color name="black">#000</color>

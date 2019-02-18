@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@drawable/splash_background"
+    android:fitsSystemWindows="true">
 
     <com.sackcentury.shinebuttonlib.ShineButton
         android:id="@+id/splash_text"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_centerInParent="true"
-        android:src="@color/colorPrimaryDark"
+        android:src="@android:color/transparent"
         app:allow_random_color="true"
         app:big_shine_color="@color/white"
-        app:btn_color="@color/colorPrimaryDark"
+        app:btn_color="@android:color/transparent"
         app:btn_fill_color="@color/white"
         app:click_animation_duration="200"
         app:enable_flashing="true"

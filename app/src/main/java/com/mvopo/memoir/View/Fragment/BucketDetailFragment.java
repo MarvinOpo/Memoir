@@ -3,12 +3,15 @@ package com.mvopo.memoir.View.Fragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +50,10 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     private String imgPath;
 
     private View.OnClickListener clickListener;
+
+    @ColorInt
+    private int colorAccent;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,8 +87,6 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
         View.OnFocusChangeListener focusListener = presenter.getFocusListener();
         titleEdtx.setOnFocusChangeListener(focusListener);
         bodyEdtx.setOnFocusChangeListener(focusListener);
-
-        doneBtn.setSelected(bucketItem.getIsDone());
 
         return view;
     }
@@ -125,6 +130,16 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     }
 
     @Override
+    public String getTitle() {
+        return titleEdtx.getText().toString().trim();
+    }
+
+    @Override
+    public String getBody() {
+        return bodyEdtx.getText().toString().trim();
+    }
+
+    @Override
     public boolean isBucketDone() {
         return bucketItem.getIsDone();
     }
@@ -138,6 +153,7 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
         bodyEdtx.setText(bucketItem.getBody());
         categoryTv.setText(bucketItem.getCategory());
         difficultyTv.setText(bucketItem.getDifficulty());
+        doneBtn.setSelected(bucketItem.getIsDone());
 
         hideSaveBtn();
     }
@@ -214,8 +230,8 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     @Override
     public void addDivider() {
         View lineView = new View(getContext());
-        lineView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        lineView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+        lineView.setBackgroundColor(colorAccent);
+        lineView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
 
         optionGroup.addView(lineView);
     }
@@ -267,5 +283,13 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     @Override
     public void startIntent(Intent intent) {
         startActivityForResult(intent, Constants.IMAGE_PICK_CODE);
+    }
+
+    @Override
+    public void setAccentColor() {
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.colorAccent, typedValue, true);
+        colorAccent = typedValue.data;
     }
 }
