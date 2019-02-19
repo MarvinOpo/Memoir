@@ -26,105 +26,115 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/profile_image"
+            android:hint="@string/name_hint"
+            android:padding="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:padding="10dp"
-            android:hint="@string/name_hint"
-            android:textColorHint="@color/white"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"/>
+            app:layout_constraintTop_toBottomOf="@id/profile_image" />
     </android.support.constraint.ConstraintLayout>
 
-    <com.sackcentury.shinebuttonlib.ShineButton
-        android:id="@+id/heart_btn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp"
-        android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
-        app:big_shine_color="#FF0000"
-        app:btn_color="@android:color/darker_gray"
-        app:btn_fill_color="#FF0000"
-        app:click_animation_duration="200"
-        app:enable_flashing="false"
+    <TextView
+        android:id="@+id/react_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Journal Reactions"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?colorPrimary"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_guide_40"
-        app:shine_animation_duration="1500"
-        app:shine_count="8"
-        app:shine_turn_angle="10"
-        app:siShape="@raw/heart"
-        app:small_shine_color="#CC9999"
-        app:small_shine_offset_angle="20" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_guide_40" />
 
-    <com.sackcentury.shinebuttonlib.ShineButton
-        android:id="@+id/happy_btn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp"
-        android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
-        app:big_shine_color="#FFD93B"
-        app:btn_color="@android:color/darker_gray"
-        app:btn_fill_color="#FFD93B"
-        app:click_animation_duration="200"
-        app:enable_flashing="false"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_guide_40"
-        app:layout_constraintLeft_toRightOf="@+id/heart_btn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shine_animation_duration="1500"
-        app:shine_count="8"
-        app:shine_turn_angle="10"
-        app:siShape="@raw/happy"
-        app:small_shine_color="#FDEBA0"
-        app:small_shine_offset_angle="20" />
+    <ImageView
+        android:id="@+id/heart_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/heart"
+        app:layout_constraintRight_toLeftOf="@+id/smile_iv"
+        app:layout_constraintTop_toBottomOf="@+id/react_label" />
 
-    <com.sackcentury.shinebuttonlib.ShineButton
-        android:id="@+id/sad_btn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp"
-        android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
-        app:big_shine_color="#008cce"
-        app:btn_color="@android:color/darker_gray"
-        app:btn_fill_color="#008cce"
-        app:click_animation_duration="200"
-        app:enable_flashing="false"
-        app:layout_constraintLeft_toRightOf="@+id/happy_btn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shine_animation_duration="1500"
-        app:shine_count="8"
-        app:shine_turn_angle="10"
-        app:siShape="@raw/sad"
-        app:small_shine_color="#91d6f7"
-        app:small_shine_offset_angle="20" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/count"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/heart_iv"
+        app:layout_constraintLeft_toLeftOf="@+id/heart_iv"
+        app:layout_constraintRight_toRightOf="@+id/heart_iv"
+        app:layout_constraintTop_toTopOf="@+id/heart_iv" />
 
-    <com.sackcentury.shinebuttonlib.ShineButton
-        android:id="@+id/angry_btn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp"
-        android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
-        app:big_shine_color="#FC6600"
-        app:btn_color="@android:color/darker_gray"
-        app:btn_fill_color="#FC6600"
-        app:click_animation_duration="200"
-        app:enable_flashing="false"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_guide_40"
-        app:layout_constraintLeft_toRightOf="@+id/sad_btn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shine_animation_duration="1500"
-        app:shine_count="8"
-        app:shine_turn_angle="10"
-        app:siShape="@raw/angry"
-        app:small_shine_color="#FCA971"
-        app:small_shine_offset_angle="20" />
+    <ImageView
+        android:id="@+id/smile_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/smile"
+        app:layout_constraintRight_toLeftOf="@+id/vertical_guide_50"
+        app:layout_constraintTop_toBottomOf="@+id/react_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/count"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/smile_iv"
+        app:layout_constraintLeft_toLeftOf="@+id/smile_iv"
+        app:layout_constraintRight_toRightOf="@+id/smile_iv"
+        app:layout_constraintTop_toTopOf="@+id/smile_iv" />
+
+    <ImageView
+        android:id="@+id/sad_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/sad"
+        app:layout_constraintLeft_toRightOf="@+id/vertical_guide_50"
+        app:layout_constraintTop_toBottomOf="@+id/react_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/count"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/sad_iv"
+        app:layout_constraintLeft_toLeftOf="@+id/sad_iv"
+        app:layout_constraintRight_toRightOf="@+id/sad_iv"
+        app:layout_constraintTop_toTopOf="@+id/sad_iv" />
+
+    <ImageView
+        android:id="@+id/angry_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/angry"
+        app:layout_constraintLeft_toRightOf="@+id/sad_iv"
+        app:layout_constraintTop_toBottomOf="@+id/react_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/count"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/angry_iv"
+        app:layout_constraintLeft_toLeftOf="@+id/angry_iv"
+        app:layout_constraintRight_toRightOf="@+id/angry_iv"
+        app:layout_constraintTop_toTopOf="@+id/angry_iv" />
 
     <android.support.constraint.Guideline
         android:id="@+id/horizontal_guide_40"
@@ -132,4 +142,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/vertical_guide_50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 </android.support.constraint.ConstraintLayout>

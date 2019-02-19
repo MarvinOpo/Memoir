@@ -64,6 +64,7 @@
     <string name="allow_notify">Allow app notification</string>
     <string name="theme_label">Select theme color</string>
 
+    <string name="count">88</string>
     <string-array name="category">
         <item>@string/adventure</item>
         <item>@string/entertainment</item>
