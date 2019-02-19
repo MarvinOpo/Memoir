@@ -19,7 +19,7 @@ import com.mvopo.memoir.R;
 public class BucketDetailPresenter implements BucketDetailContract.detailAction {
 
     private BucketDetailContract.detailView detailView;
-    private boolean forUpdate = false;
+    private boolean forUpdate = false, isValid = false;
 
     public BucketDetailPresenter(BucketDetailContract.detailView detailView) {
         this.detailView = detailView;
@@ -67,6 +67,10 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
                         break;
                     case R.id.bucket_detail_done:
                         view.setSelected(!view.isSelected());
+
+                        if(view.isSelected()) detailView.setStampVisibility(View.VISIBLE);
+                        else detailView.setStampVisibility(View.GONE);
+
                         validateBucket();
                         break;
                     case R.id.bucket_detail_save:
@@ -78,7 +82,7 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
                             Log.e("DETAIL_PRESENTER", e.getMessage());
                         }
 
-                        detailView.popFragment();
+                        if(isValid) detailView.popFragment();
                         break;
                     case R.id.bucket_detail_edit:
                         if(!detailView.isBucketDone()) detailView.showSaveBtn();
@@ -104,6 +108,7 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
 
     @Override
     public void validateBucket() {
+        isValid = false;
         String title = detailView.getTitle();
         String body = detailView.getBody();
 
@@ -117,6 +122,7 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
             return;
         }
 
+        isValid = true;
         saveBucket();
     }
 

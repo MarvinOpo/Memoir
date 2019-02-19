@@ -1,5 +1,6 @@
 package com.mvopo.memoir.Interface;
 
+import android.content.Intent;
 import android.view.View;
 
 public class SettingContract {
@@ -16,9 +17,25 @@ public class SettingContract {
 
         void setSelectedTheme(int styleID);
         void startMainIntent();
+
+        boolean isStorageGranted();
+        boolean shouldCheckPermission();
+        boolean shouldShowPermissionRequest();
+        void requestPermission();
+        void showPermissionDialog();
+
+        void startIntent(Intent intent);
+
+        void loadImage(String path);
     }
 
     public interface settingAction{
         View.OnClickListener getThemeColorListener();
+
+        void checkPermission();
+        void onPermissionResult(int requestCode, int[] grantResults);
+
+
+        void onActivityResult(int requestCode, int resultCode, Intent data);
     }
 }

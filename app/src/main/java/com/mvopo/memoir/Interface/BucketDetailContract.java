@@ -41,6 +41,7 @@ public class BucketDetailContract {
         void startIntent(Intent intent);
 
         void setAccentColor();
+        void setStampVisibility(int visibility);
     }
 
     public interface detailAction{

@@ -39,7 +39,7 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
 
     private BucketDetailPresenter presenter;
 
-    private ImageView bucketImageIv;
+    private ImageView bucketImageIv, doneStampIv;
     private EditText titleEdtx, bodyEdtx;
     private TextView categoryTv, difficultyTv;
     private Button saveBtn, editBtn, doneBtn;
@@ -64,6 +64,7 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
         View view = inflater.inflate(R.layout.fragment_bucket_detail, container, false);
 
         bucketImageIv = view.findViewById(R.id.bucket_detail_image);
+        doneStampIv = view.findViewById(R.id.done_stamp);
         titleEdtx = view.findViewById(R.id.bucket_detail_title);
         bodyEdtx = view.findViewById(R.id.bucket_detail_body);
         categoryTv = view.findViewById(R.id.bucket_detail_category);
@@ -291,5 +292,10 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
         Resources.Theme theme = getContext().getTheme();
         theme.resolveAttribute(R.attr.colorAccent, typedValue, true);
         colorAccent = typedValue.data;
+    }
+
+    @Override
+    public void setStampVisibility(int visibility) {
+        doneStampIv.setVisibility(visibility);
     }
 }

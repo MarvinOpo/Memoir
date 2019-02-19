@@ -24,8 +24,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="@string/name_hint"
             android:padding="10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -40,25 +42,36 @@
         android:id="@+id/react_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:text="Journal Reactions"
+        android:text="@string/react_label"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?colorPrimary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontal_guide_40" />
 
+    <View
+        android:id="@+id/reaction_line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="?colorAccent"
+        app:layout_constraintLeft_toLeftOf="@id/heart_iv"
+        app:layout_constraintRight_toRightOf="@id/angry_iv"
+        app:layout_constraintTop_toBottomOf="@+id/react_label" />
+
     <ImageView
         android:id="@+id/heart_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:src="@drawable/heart"
         app:layout_constraintRight_toLeftOf="@+id/smile_iv"
         app:layout_constraintTop_toBottomOf="@+id/react_label" />
 
     <TextView
+        android:id="@+id/heart_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -74,13 +87,14 @@
         android:id="@+id/smile_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:src="@drawable/smile"
         app:layout_constraintRight_toLeftOf="@+id/vertical_guide_50"
         app:layout_constraintTop_toBottomOf="@+id/react_label" />
 
     <TextView
+        android:id="@+id/smile_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -97,12 +111,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/sad"
         app:layout_constraintLeft_toRightOf="@+id/vertical_guide_50"
         app:layout_constraintTop_toBottomOf="@+id/react_label" />
 
     <TextView
+        android:id="@+id/sad_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -119,12 +134,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/angry"
         app:layout_constraintLeft_toRightOf="@+id/sad_iv"
         app:layout_constraintTop_toBottomOf="@+id/react_label" />
 
     <TextView
+        android:id="@+id/angry_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -135,6 +151,96 @@
         app:layout_constraintLeft_toLeftOf="@+id/angry_iv"
         app:layout_constraintRight_toRightOf="@+id/angry_iv"
         app:layout_constraintTop_toTopOf="@+id/angry_iv" />
+
+    <TextView
+        android:id="@+id/bucket_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="@string/bucket_label"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?colorPrimary"
+        app:layout_constraintLeft_toLeftOf="@id/heart_iv"
+        app:layout_constraintRight_toRightOf="@id/angry_iv"
+        app:layout_constraintTop_toBottomOf="@+id/heart_iv" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="?colorAccent"
+        app:layout_constraintLeft_toLeftOf="@id/heart_iv"
+        app:layout_constraintRight_toRightOf="@id/angry_iv"
+        app:layout_constraintTop_toBottomOf="@+id/bucket_label" />
+
+    <TextView
+        android:id="@+id/done_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/done"
+        android:textColor="?colorPrimary"
+        app:layout_constraintLeft_toLeftOf="@id/heart_iv"
+        app:layout_constraintRight_toLeftOf="@+id/vertical_guide_50"
+        app:layout_constraintTop_toBottomOf="@+id/bucket_label" />
+
+    <TextView
+        android:id="@+id/done_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/count"
+        android:textColor="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/done_label"
+        app:layout_constraintLeft_toLeftOf="@+id/vertical_guide_50"
+        app:layout_constraintRight_toRightOf="@+id/angry_iv"
+        app:layout_constraintTop_toTopOf="@+id/done_label" />
+
+    <TextView
+        android:id="@+id/pending_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/pending"
+        android:textColor="?colorPrimary"
+        app:layout_constraintLeft_toLeftOf="@id/done_label"
+        app:layout_constraintTop_toBottomOf="@+id/done_label" />
+
+    <TextView
+        android:id="@+id/pending_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/count"
+        android:textColor="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/pending_label"
+        app:layout_constraintLeft_toLeftOf="@+id/vertical_guide_50"
+        app:layout_constraintRight_toRightOf="@+id/angry_iv"
+        app:layout_constraintTop_toTopOf="@+id/pending_label" />
+
+    <TextView
+        android:id="@+id/total_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/total"
+        android:textColor="?colorPrimary"
+        app:layout_constraintLeft_toLeftOf="@id/done_label"
+        app:layout_constraintTop_toBottomOf="@+id/pending_label" />
+
+    <TextView
+        android:id="@+id/total_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/count"
+        android:textColor="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/total_label"
+        app:layout_constraintLeft_toLeftOf="@+id/vertical_guide_50"
+        app:layout_constraintRight_toRightOf="@+id/angry_iv"
+        app:layout_constraintTop_toTopOf="@+id/total_label" />
 
     <android.support.constraint.Guideline
         android:id="@+id/horizontal_guide_40"

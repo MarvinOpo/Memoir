@@ -28,8 +28,10 @@
             android:id="@+id/setting_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="@string/name_hint"
             android:padding="10dp"
+            android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
             android:textColorHint="?colorAccent"
@@ -70,8 +72,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/theme_pink"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="10dp"
         android:src="@color/pink"
         app:civ_border_color="@color/pinkDark"
@@ -114,6 +116,42 @@
         app:civ_border_width="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/horizontal_guide_55"
         app:layout_constraintLeft_toRightOf="@+id/theme_violet"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guide_55" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/theme_green"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:src="@color/green"
+        app:civ_border_color="@color/greenDark"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/horizontal_guide_55"
+        app:layout_constraintLeft_toRightOf="@+id/theme_red"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guide_55" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/theme_gray"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:src="@color/gray"
+        app:civ_border_color="@color/grayDark"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/horizontal_guide_55"
+        app:layout_constraintLeft_toRightOf="@+id/theme_green"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guide_55" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/theme_black"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:src="@color/blackPrimary"
+        app:civ_border_color="@color/blackDark"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/horizontal_guide_55"
+        app:layout_constraintLeft_toRightOf="@+id/theme_gray"
         app:layout_constraintTop_toTopOf="@+id/horizontal_guide_55" />
 
     <android.support.constraint.Guideline

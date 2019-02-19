@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -78,6 +79,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
     @Override
     public BucketListFragment getBucketListFragment() {
         return bucketlistFragment;
+    }
+
+    @Override
+    public boolean notificationAllowed() {
+        SharedPreferences myPref = this.getSharedPreferences("Memoir", MODE_PRIVATE);
+        boolean allowed = myPref.getBoolean("notification", true);
+
+        return allowed;
     }
 
     @Override

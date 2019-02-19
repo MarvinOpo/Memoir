@@ -24,6 +24,25 @@
         <item name="colorAccent">@color/redAccent</item>
     </style>
 
+    <style name="AppTheme.Green" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryDark">@color/greenDark</item>
+        <item name="colorAccent">@color/greenAccent</item>
+    </style>
+
+    <style name="AppTheme.Gray" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/gray</item>
+        <item name="colorPrimaryDark">@color/grayDark</item>
+        <item name="colorAccent">@color/grayAccent</item>
+    </style>
+
+    <style name="AppTheme.Black" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/blackPrimary</item>
+        <item name="colorPrimaryDark">@color/blackDark</item>
+        <item name="colorAccent">@color/blackAccent</item>
+    </style>
+
+
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/pink</item>
         <item name="colorPrimaryDark">@color/pinkDark</item>

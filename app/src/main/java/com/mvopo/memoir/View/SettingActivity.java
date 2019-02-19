@@ -1,11 +1,17 @@
 package com.mvopo.memoir.View;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +22,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import com.bumptech.glide.request.RequestOptions;
+import com.mvopo.memoir.Helper.GlideApp;
 import com.mvopo.memoir.Interface.SettingContract;
+import com.mvopo.memoir.Model.Constants;
 import com.mvopo.memoir.Presenter.SettingPresenter;
 import com.mvopo.memoir.R;
 
@@ -27,7 +36,8 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     private SettingPresenter presenter;
 
     private CircleImageView profileCiv, pinkCiv,
-            cyanCiv, violetCiv, redCiv;
+            cyanCiv, violetCiv, redCiv, greenCiv,
+            grayCiv, blackCiv;
     private EditText nameEdtx;
     private Switch notificationSwitch;
     private Button saveBtn;
@@ -35,7 +45,8 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     private ConstraintLayout colorContainer;
 
     private ViewGroup.LayoutParams pinkParam, cyanParam,
-            violetParam, redParam;
+            violetParam, redParam, greenParam, grayParam,
+            blackParam;
 
     private int selectedTheme;
     private String imgPath;
@@ -57,6 +68,9 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         cyanCiv = findViewById(R.id.theme_cyan);
         violetCiv = findViewById(R.id.theme_violet);
         redCiv = findViewById(R.id.theme_red);
+        greenCiv = findViewById(R.id.theme_green);
+        grayCiv = findViewById(R.id.theme_gray);
+        blackCiv = findViewById(R.id.theme_black);
 
         nameEdtx = findViewById(R.id.setting_name);
 
@@ -65,7 +79,15 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
 
         scale = this.getResources().getDisplayMetrics().density;
         resetParams();
+        selectThemeColor(pinkCiv);
         initThemeListener();
+
+        profileCiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.checkPermission();
+            }
+        });
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +103,19 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
                 startMainIntent();
             }
         });
+
+        SharedPreferences myPref = this.getSharedPreferences("Memoir", MODE_PRIVATE);
+        String image = myPref.getString("image", "");
+        String name = myPref.getString("name", "");
+
+        loadImage(image);
+        nameEdtx.setText(name);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -105,6 +140,9 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         cyanCiv.setOnClickListener(themeListener);
         violetCiv.setOnClickListener(themeListener);
         redCiv.setOnClickListener(themeListener);
+        greenCiv.setOnClickListener(themeListener);
+        grayCiv.setOnClickListener(themeListener);
+        blackCiv.setOnClickListener(themeListener);
     }
 
     @Override
@@ -127,6 +165,18 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         redParam.height = pixels;
         redParam.width = pixels;
 
+        greenParam = greenCiv.getLayoutParams();
+        greenParam.height = pixels;
+        greenParam.width = pixels;
+
+        grayParam = grayCiv.getLayoutParams();
+        grayParam.height = pixels;
+        grayParam.width = pixels;
+
+        blackParam = blackCiv.getLayoutParams();
+        blackParam.height = pixels;
+        blackParam.width = pixels;
+
         unselectThemeColors();
     }
 
@@ -139,6 +189,9 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
                 cyanCiv.setLayoutParams(cyanParam);
                 violetCiv.setLayoutParams(violetParam);
                 redCiv.setLayoutParams(redParam);
+                greenCiv.setLayoutParams(greenParam);
+                grayCiv.setLayoutParams(grayParam);
+                blackCiv.setLayoutParams(blackParam);
             }
         });
     }
@@ -174,5 +227,65 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         intent.putExtra("theme", selectedTheme);
         startActivity(intent);
         this.finish();
+    }
+
+    @Override
+    public boolean isStorageGranted() {
+        return ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @Override
+    public boolean shouldCheckPermission() {
+        return Build.VERSION.SDK_INT >= 23;
+    }
+
+    @Override
+    public boolean shouldShowPermissionRequest() {
+        return ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+    }
+
+    @Override
+    public void requestPermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.READ_STORAGE_CODE);
+    }
+
+    @Override
+    public void showPermissionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.permission_title);
+        builder.setMessage(R.string.permission_message);
+        builder.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Later", null);
+        builder.show();
+    }
+
+    @Override
+    public void startIntent(Intent intent) {
+        startActivityForResult(intent, Constants.IMAGE_PICK_CODE);
+    }
+
+    @Override
+    public void loadImage(String path) {
+        imgPath = path;
+
+        GlideApp.with(this)
+                .load(path)
+                .apply(RequestOptions.circleCropTransform())
+                .placeholder(R.drawable.add_image)
+                .error(R.drawable.add_image)
+                .centerCrop()
+                .into(profileCiv);
     }
 }

@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/title_hint"
+            android:inputType="textCapWords"
             android:textAppearance="?android:attr/textAppearanceLarge"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guide_line" />
@@ -42,14 +43,13 @@
 
         <ImageView
             android:id="@+id/bucket_item_done"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/done_icon"
-            app:layout_constraintBottom_toTopOf="@id/bucket_item_title"
-            app:layout_constraintRight_toRightOf="parent"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/bucket_item_image" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/bucket_item_title" />
 
         <ScrollView
             android:layout_width="match_parent"

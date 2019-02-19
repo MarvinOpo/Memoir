@@ -48,21 +48,27 @@ public class MainPresenter implements MainContract.mainAction {
 
     @Override
     public void setNotifier(AlarmManager manager, PendingIntent intent) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
+        if(mainView.notificationAllowed()) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR_OF_DAY, 18);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
 
-        if (manager != null) {
-            manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, intent);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intent);
+            if (manager != null) {
+                manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, intent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intent);
+                }
+            }
+
+            mainView.setComponentSetting();
+        }else{
+            if (manager != null) {
+                manager.cancel(intent);
             }
         }
-
-        mainView.setComponentSetting();
     }
 
     @Override

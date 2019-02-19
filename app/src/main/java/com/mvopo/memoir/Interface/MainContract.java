@@ -11,9 +11,9 @@ import com.mvopo.memoir.View.Fragment.JournalFragment;
 public class MainContract {
 
     public interface mainView {
-
         JournalFragment getJournalFragment();
         BucketListFragment getBucketListFragment();
+        boolean notificationAllowed();
 
         boolean isStorageGranted();
         boolean shouldCheckPermission();
