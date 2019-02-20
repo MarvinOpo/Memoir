@@ -74,8 +74,8 @@
 
             <ImageView
                 android:id="@+id/done_stamp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="@id/bucket_detail_title"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginEnd="10dp"

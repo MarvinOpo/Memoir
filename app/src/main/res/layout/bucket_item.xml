@@ -43,8 +43,8 @@
 
         <ImageView
             android:id="@+id/bucket_item_done"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/done_icon"
             android:visibility="gone"
