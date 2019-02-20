@@ -283,8 +283,8 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         GlideApp.with(this)
                 .load(path)
                 .apply(RequestOptions.circleCropTransform())
-                .placeholder(R.drawable.add_image)
-                .error(R.drawable.add_image)
+                .placeholder(R.drawable.profile_default)
+                .error(R.drawable.profile_default)
                 .centerCrop()
                 .into(profileCiv);
     }

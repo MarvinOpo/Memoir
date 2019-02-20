@@ -70,13 +70,15 @@ public class SettingPresenter implements SettingContract.settingAction {
                 } else {
                     settingView.requestPermission();
                 }
-            }else{
-                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                intent.setType("image/*");
-                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                settingView.startIntent(intent);
+
+                return;
             }
         }
+
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("image/*");
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        settingView.startIntent(intent);
     }
 
     @Override
