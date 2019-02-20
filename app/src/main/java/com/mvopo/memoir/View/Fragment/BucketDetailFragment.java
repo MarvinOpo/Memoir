@@ -154,7 +154,8 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
         bodyEdtx.setText(bucketItem.getBody());
         categoryTv.setText(bucketItem.getCategory());
         difficultyTv.setText(bucketItem.getDifficulty());
-        doneBtn.setSelected(bucketItem.getIsDone());
+        doneBtn.setSelected(!bucketItem.getIsDone());
+        doneBtn.performClick();
 
         hideSaveBtn();
     }
