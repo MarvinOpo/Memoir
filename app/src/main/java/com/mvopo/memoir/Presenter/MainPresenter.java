@@ -95,4 +95,11 @@ public class MainPresenter implements MainContract.mainAction {
 
         return listener;
     }
+
+    @Override
+    public void checkAlarmPermission() {
+        if(mainView.notificationAllowed()){
+            mainView.startAlarmIntent();
+        }
+    }
 }

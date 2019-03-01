@@ -128,6 +128,13 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
 
     @Override
     public void saveBucket() {
+        try{
+            detailView.getBucketId();
+            forUpdate = true;
+        }catch (Exception e){
+            forUpdate = false;
+        }
+
         BucketItemDao bucketDao = detailView.getBucketDaoInstance();
         BucketItem bucketItem;
         if(forUpdate){
@@ -144,7 +151,10 @@ public class BucketDetailPresenter implements BucketDetailContract.detailAction 
         if(resultCode == Activity.RESULT_OK){
             switch (requestCode){
                 case Constants.IMAGE_PICK_CODE:
-                    String path = data.getData().toString();
+                    Uri imgUri = data.getData();
+                    detailView.takePersistentPermission(imgUri);
+
+                    String path = imgUri.toString();
                     detailView.loadImage(path);
                     break;
             }

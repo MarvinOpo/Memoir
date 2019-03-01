@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.mvopo.memoir.Helper.GlideApp;
 import com.mvopo.memoir.Interface.SettingContract;
@@ -286,6 +287,7 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
                 .placeholder(R.drawable.profile_default)
                 .error(R.drawable.profile_default)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(profileCiv);
     }
 }

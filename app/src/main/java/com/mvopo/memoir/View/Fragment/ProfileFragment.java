@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mvopo.memoir.Helper.GlideApp;
 import com.mvopo.memoir.Interface.ProfileContract;
 import com.mvopo.memoir.Model.BucketItem;
@@ -160,6 +161,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.profile
                 .placeholder(R.drawable.profile_default)
                 .error(R.drawable.profile_default)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(profileCiv);
 
         nameTv.setText(name);

@@ -26,6 +26,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mvopo.memoir.Helper.GlideApp;
 import com.mvopo.memoir.Interface.BucketDetailContract;
 import com.mvopo.memoir.Model.BucketItem;
@@ -141,6 +142,11 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     }
 
     @Override
+    public Long getBucketId() {
+        return bucketItem.getId();
+    }
+
+    @Override
     public boolean isBucketDone() {
         return bucketItem.getIsDone();
     }
@@ -226,6 +232,7 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
                 .placeholder(R.drawable.add_image)
                 .error(R.drawable.add_image)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(bucketImageIv);
     }
 
@@ -298,5 +305,10 @@ public class BucketDetailFragment extends Fragment implements BucketDetailContra
     @Override
     public void setStampVisibility(int visibility) {
         doneStampIv.setVisibility(visibility);
+    }
+
+    @Override
+    public void takePersistentPermission(Uri imgUri) {
+        getActivity().getContentResolver().takePersistableUriPermission(imgUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
     }
 }

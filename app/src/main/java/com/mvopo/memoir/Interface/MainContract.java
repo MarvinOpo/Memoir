@@ -22,11 +22,14 @@ public class MainContract {
         void showPermissionDialog();
 
         void showFragment(Fragment fragment);
+
+        void startAlarmIntent();
         void setComponentSetting();
     }
     public interface mainAction {
         BottomNavigationView.OnNavigationItemSelectedListener getBottomNavListener();
 
+        void checkAlarmPermission();
         void checkPermission();
         void onPermissionResult(int requestCode, int[] grantResults);
 

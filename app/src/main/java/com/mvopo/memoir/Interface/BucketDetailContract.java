@@ -1,6 +1,7 @@
 package com.mvopo.memoir.Interface;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ public class BucketDetailContract {
         BucketItemDao getBucketDaoInstance();
         String getTitle();
         String getBody();
+        Long getBucketId();
         boolean isBucketDone();
 
         void displayBucket();
@@ -42,6 +44,8 @@ public class BucketDetailContract {
 
         void setAccentColor();
         void setStampVisibility(int visibility);
+
+        void takePersistentPermission(Uri imgUri);
     }
 
     public interface detailAction{

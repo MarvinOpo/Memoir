@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mvopo.memoir.R;
 
 import java.io.File;
@@ -50,6 +51,7 @@ public class ImageAdapter extends BaseAdapter {
                 .load(uri)
                 .placeholder(R.drawable.no_photo)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
 
         return imageView;

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mvopo.memoir.Model.BucketItem;
 import com.mvopo.memoir.R;
 import com.mvopo.memoir.View.Fragment.BucketDetailFragment;
@@ -74,6 +75,7 @@ public class BucketAdapter extends PagerAdapter {
                 .placeholder(R.drawable.no_photo)
                 .error(R.drawable.no_photo)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(bucketImageIv);
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -82,15 +84,7 @@ public class BucketAdapter extends PagerAdapter {
                 showItemDetail(position);
             }
         });
-
         bodyTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showItemDetail(position);
-            }
-        });
-
-        bucketImageIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showItemDetail(position);

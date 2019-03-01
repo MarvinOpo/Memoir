@@ -63,12 +63,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
         bottom_nav.setOnNavigationItemSelectedListener(presenter.getBottomNavListener());
 
         presenter.checkPermission();
-
-        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
-        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-        presenter.setNotifier(manager, pendingIntent);
+        presenter.checkAlarmPermission();
     }
 
     @Override
@@ -136,6 +131,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
         fragmentTransaction.replace(R.id.fragment_container, fragment).commit();
+    }
+
+    @Override
+    public void startAlarmIntent() {
+        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        presenter.setNotifier(manager, pendingIntent);
     }
 
     @Override
