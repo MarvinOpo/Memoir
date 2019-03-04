@@ -2,6 +2,7 @@ package com.mvopo.memoir.Interface;
 
 import android.content.ContentResolver;
 import android.view.View;
+import android.widget.GridView;
 
 import com.mvopo.memoir.Helper.EventDecorator;
 import com.mvopo.memoir.Model.Journal;
@@ -74,5 +75,7 @@ public class JournalContract {
 
         String getMoodString(int viewID);
         int getMoodResource(String mood);
+
+        void adjustGridHeight(GridView gridView);
     }
 }

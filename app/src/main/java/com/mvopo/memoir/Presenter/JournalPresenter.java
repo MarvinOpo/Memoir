@@ -6,6 +6,9 @@ import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.ListAdapter;
 
 import com.mvopo.memoir.Helper.EventDecorator;
 import com.mvopo.memoir.Interface.JournalContract;
@@ -306,5 +309,34 @@ public class JournalPresenter implements JournalContract.journalAction {
         }
 
         return resource;
+    }
+
+    @Override
+    public void adjustGridHeight(GridView gridView) {
+        ListAdapter listAdapter = gridView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+        int items = listAdapter.getCount();
+        int rows = 0;
+
+        View listItem = listAdapter.getView(0, null, gridView);
+        listItem.measure(0, 0);
+        totalHeight = listItem.getMeasuredHeight();
+
+        float x = 1;
+        if( items > 3 ){
+            x = items/3;
+            rows = (int) x;
+            totalHeight *= rows;
+        }
+
+        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+        params.height = totalHeight;
+        gridView.setLayoutParams(params);
+
+        journalView.hideLoader();
     }
 }

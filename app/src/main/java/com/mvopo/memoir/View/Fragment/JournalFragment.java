@@ -26,6 +26,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mvopo.memoir.Helper.EventDecorator;
 import com.mvopo.memoir.Helper.ImageAdapter;
@@ -43,6 +44,7 @@ import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class JournalFragment extends Fragment implements JournalContract.journalView {
 
@@ -141,6 +143,13 @@ public class JournalFragment extends Fragment implements JournalContract.journal
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        calendarView.setSelectedDate(CalendarDay.today());
+        calendarView.setCurrentDate(CalendarDay.today());
+    }
+
+    @Override
     public ContentResolver getContentResolver() {
         return getContext().getContentResolver();
     }
@@ -168,7 +177,7 @@ public class JournalFragment extends Fragment implements JournalContract.journal
             @Override
             public void run() {
                 photoContainerGv.setAdapter(new ImageAdapter(getContext(), photos));
-                hideLoader();
+                presenter.adjustGridHeight(photoContainerGv);
             }
         });
     }

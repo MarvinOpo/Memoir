@@ -22,7 +22,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Uri notificationSoundURI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.memoir_launcher)
+                .setSmallIcon(R.drawable.notification_icon)
                 .setContentTitle("Memoir")
                 .setContentText("What's up? Care to update your journal? Tap here.")
                 .setAutoCancel(true)
