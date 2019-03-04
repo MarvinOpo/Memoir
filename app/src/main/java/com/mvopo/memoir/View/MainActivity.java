@@ -85,6 +85,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
     }
 
     @Override
+    public boolean alarmIsUp() {
+        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+        alarmIntent.setAction(Constants.ALARM_ACTION);
+
+        boolean alarmUp = (PendingIntent.getBroadcast(this, Constants.ALARM_CODE, alarmIntent, PendingIntent.FLAG_NO_CREATE) != null);
+
+        return alarmUp;
+    }
+
+    @Override
     public boolean isStorageGranted() {
         return ActivityCompat.checkSelfPermission( this,
                 Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED ;
@@ -136,7 +146,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.main
     @Override
     public void startAlarmIntent() {
         Intent alarmIntent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+        alarmIntent.setAction(Constants.ALARM_ACTION);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, Constants.ALARM_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         presenter.setNotifier(manager, pendingIntent);

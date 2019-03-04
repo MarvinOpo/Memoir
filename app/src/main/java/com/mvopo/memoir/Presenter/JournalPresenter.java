@@ -252,7 +252,10 @@ public class JournalPresenter implements JournalContract.journalAction {
 
     @Override
     public void insertMood(MarkedDays markedDays) {
-        markedDaysDao.insert(markedDays);
+        long id = markedDaysDao.insert(markedDays);
+
+        markedDays.setId(id);
+        this.markedDay = markedDays;
     }
 
     @Override

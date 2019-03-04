@@ -88,7 +88,7 @@ public class BucketListPresenter implements BucketListContract.bucketAction {
             }
         }
 
-        List<BucketItem> bucketList = bucketDao.queryRaw(whereClause + " ORDER BY _id desc", null);
+        List<BucketItem> bucketList = bucketDao.queryRaw(whereClause + " ORDER BY _id desc");
 
         BucketItem item = new BucketItem();
         item.setImage("");

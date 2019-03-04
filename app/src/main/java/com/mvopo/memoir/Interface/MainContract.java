@@ -14,6 +14,7 @@ public class MainContract {
         JournalFragment getJournalFragment();
         BucketListFragment getBucketListFragment();
         boolean notificationAllowed();
+        boolean alarmIsUp();
 
         boolean isStorageGranted();
         boolean shouldCheckPermission();
